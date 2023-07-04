@@ -1,0 +1,21 @@
+{
+    "name": "yaelh/bienes-raices",
+    "description": "Bienes raices proyecto",
+    "type": "project",
+    "authors": [
+        {
+            "name": "YaelHerbert",
+            "email": "yael.herbert@outlook.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^2.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Model\\": "./models",
+            "MVC\\": "./",
+            "Controllers\\": "./controllers"
+        }
+    }
+}
