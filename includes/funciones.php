@@ -3,7 +3,7 @@
 
 define('TEMPLATES_URL', __DIR__ . '/templates');
 define('FUNCIONES_URL', __DIR__ . 'funciones.php');
-define('CARPETA_IMAGENES', __DIR__ . '/../imagenes/');
+define('CARPETA_IMAGENES', $_SERVER['DOCUMENT_ROOT'] . '/imagenes/');
 
 function incluirTemplate(string $nombre, bool $inicio = false)
 {
@@ -13,37 +13,41 @@ function incluirTemplate(string $nombre, bool $inicio = false)
 function estaAutenticado()
 {
     session_start();
-    
-    if(!$_SESSION['login']){
+
+    if (!$_SESSION['login']) {
         header('Location: ../index.php');
         return $auth = false;
     }
     return $auth = true;
 }
 
-function debuguear($variable){
+function debuguear($variable)
+{
     var_dump($variable);
     exit;
 }
 
 // Escapa / Sanitizar el HTML
-function s($html) : string{
+function s($html): string
+{
     $s = htmlspecialchars($html);
     return $s;
 }
 
 // Validar tipo de contenido
-function validarTipoContenido($tipo){
-    $tipos = ['vendedor' , 'propiedad'];
+function validarTipoContenido($tipo)
+{
+    $tipos = ['vendedor', 'propiedad'];
 
     return in_array($tipo, $tipos);
 }
 
 // Muestra los mensajes
-function mostrarNotificacion($codigo){
+function mostrarNotificacion($codigo)
+{
     $mensaje = '';
 
-    switch($codigo){
+    switch ($codigo) {
         case 1:
             $mensaje = 'Creado correctamente';
             break;
@@ -58,4 +62,17 @@ function mostrarNotificacion($codigo){
             break;
     }
     return $mensaje;
+}
+
+function validarORedireccionar(string $url)
+{
+    $id = $_GET['id'];
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+    // var_dump($id);
+
+    if (!$id) {
+        header("Location: {$url}");
+    }
+
+    return $id;
 }

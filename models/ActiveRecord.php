@@ -86,7 +86,9 @@ class ActiveRecord
         $resultado = self::$db->query($query);
 
         if ($resultado) {
-            $this->eliminarImagen();
+            if($_POST['tipo'] === 'propiedad'){
+                $this->eliminarImagen();
+            }
             header('Location: /admin?resultado=3');
         }
     }
