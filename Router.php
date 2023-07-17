@@ -1,34 +1,54 @@
 <?php
-
 namespace MVC;
 
-class Router{
+class Router
+{
 
     public $rutasGET = [];
     public $rutasPOST = [];
 
-    public function get($url, $fn){
+    public function get($url, $fn)
+    {
         $this->rutasGET[$url] = $fn;
     }
-    public function post($url, $fn){
+    public function post($url, $fn)
+    {
         $this->rutasPOST[$url] = $fn;
     }
 
-    public function comprobarRutas(){
+    public function comprobarRutas()
+    {
+        session_start();
+
+        $auth = $_SESSION['login'] ?? false;
+
+        // Arreglo de rutas protegidas
+        $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar' , '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
+
+        //$urlActual = $_SERVER['PATH_INFO'] ?? '/';
         $urlActual = $_SERVER['REQUEST_URI'] ?? '/';
         $metodo = $_SERVER['REQUEST_METHOD'];
 
-        if(strpos($urlActual, '?')){ // tuve que crear este if para que cuando sea un get, tome el redirect y no el request
+        // Proteger las rutas
+        if(in_array($urlActual, $rutas_protegidas) && !$auth){
+            header('Location: /');
+        }
+
+        if($urlActual == '/login' && $auth){
+            header('Location: /admin');
+        }
+
+        if (strpos($urlActual, '?')) { // tuve que crear este if para que cuando sea un get, tome el redirect y no el request
             $urlActual = $_SERVER['REDIRECT_URL'];
-       }
-        
-        if($metodo === 'GET' ){
+        }
+
+        if ($metodo === 'GET') {
             $fn = $this->rutasGET[$urlActual] ?? NULL;
         } else {
             $fn = $this->rutasPOST[$urlActual] ?? NULL;
         }
 
-        if($fn){
+        if ($fn) {
             // La URL existe y hay una funcion asociada
             // Esta funcion permite mandar a llamar una funcion cuando no sabemos como se llama esa funcion
             call_user_func($fn, $this);
@@ -38,9 +58,10 @@ class Router{
     }
 
     // Muestra una vista
-    public function render($view, $datos = []){
-        
-        foreach($datos as $key => $value){
+    public function render($view, $datos = [])
+    {
+
+        foreach ($datos as $key => $value) {
             $$key = $value;
         }
 

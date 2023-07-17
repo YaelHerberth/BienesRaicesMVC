@@ -30,13 +30,24 @@
     }
 
     table{
-        th, td{
+        th, td, label{
             color: $blanco;
         }
     }
 
     text, .xdebug-var-dump{
         color: $blanco;
+    }
+
+    label{
+        color: $blanco;
+    }
+    .dataTables_info, #contacto{
+        color: $blanco;
+    }
+
+    .swal2-title{
+        color: #000;
     }
     
 }

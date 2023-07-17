@@ -33,14 +33,14 @@
     ?>
 
     <div class="alinear-derecha">
-        <a href="anuncios.html" class="boton-verde">Ver todas</a>
+        <a href="anuncios" class="boton-verde">Ver todas</a>
     </div>
 </section>
 
 <section class="imagen-contacto">
     <h2>Encuentra la casa de tus sueños</h2>
     <p>Llena el formulario de contacto y un asesor se pondrá en contacto contigo en la menor brevedad posible</p>
-    <a href="contacto.html" class="boton-amarillo">Contáctanos</a>
+    <a href="contacto" class="boton-amarillo">Contáctanos</a>
 </section>
 
 <div class="contenedor seccion seccion-inferior">
@@ -55,7 +55,7 @@
                 </picture>
             </div>
             <div class="texto-entrada">
-                <a href="entrada.html">
+                <a href="#">
                     <h4>Terraza en el techo de tu casa</h4>
                     <p class="informacion-meta">Escrito el: <span>20/10/2023</span> por: <span>Admin</span></p>
                     <p>Consejos para contruir una terraza en el techo de tu casa con los mejores materiales y
@@ -73,7 +73,7 @@
                 </picture>
             </div>
             <div class="texto-entrada">
-                <a href="entrada.html">
+                <a href="#">
                     <h4>Guia para la decoración de tu hogar</h4>
                     <p class="informacion-meta">Escrito el: <span>20/10/2023</span> por: <span>Admin</span></p>
                     <p>Maximiza el espacio de tu hogar con esta guia, aprende a combinar muebles y colores para

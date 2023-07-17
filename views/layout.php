@@ -1,3 +1,21 @@
+<?php 
+ 
+if(!isset($_SESSION)){
+    session_start();
+}
+ 
+$auth = $_SESSION['login'] ?? false;
+ 
+if(!isset($inicio)){
+    $inicio = false;
+}
+
+if (empty($inicio)) {
+    $inicio = null;
+}
+ 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,9 +25,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienes Raices</title>
     <link rel="stylesheet" href="../build/css/app.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.5/datatables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css">
 </head>
-<?php $auth = false ?>
+
 <body>
+
+    <script src="../build/js/bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.5/datatables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
     <header class="header <?php echo $inicio ? 'inicio' : ''; ?>">
         <div class="contenedor contenido-header">
             <div class="barra">
@@ -28,7 +55,7 @@
                         <a href="/blog">Blog</a>
                         <a href="/contacto">Contacto</a>
                         <?php if ($auth) : ?>
-                            <a href="/cerrar-sesion.php">Cerrar Sesión</a>
+                            <a href="/logout">Cerrar Sesión</a>
                         <?php endif ?>
                     </nav>
                 </div>
@@ -41,7 +68,7 @@
     </header>
 
     <?php
-        echo $contenido;
+    echo $contenido;
     ?>
 
     <footer class="footer seccion">
@@ -55,8 +82,6 @@
         </div>
         <p class="copyright">Todos los Derechos Reservados <?= date('Y'); ?> &copy;</p>
     </footer>
-
-    <script src="../build/js/bundle.min.js"></script>
 </body>
 
 </html>

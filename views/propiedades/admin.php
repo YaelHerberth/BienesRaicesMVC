@@ -1,20 +1,20 @@
-
 <main class="contenedor seccion">
     <h1>Administrador de Bienes Raices</h1>
     <?php
-    if($resultado){
+    if ($resultado) {
         $mensaje = mostrarNotificacion(intval($resultado));
-         if ($mensaje) { ?>
-        <p class="alerta exito"><?= s($mensaje) ?></p>
-        <?php } 
+        if ($mensaje) { ?>
+            <p class="alerta exito"><?= s($mensaje) ?></p>
+    <?php }
     }
     ?>
 
     <a href="/propiedades/crear" class="boton boton-verde">Nueva Propiedad</a>
     <a href="/vendedores/crear" class="boton boton-azul">Nuevo Vendedor</a>
-    <h2>Propiedades</h2>
 
-    <table class="propiedades">
+    <h1 class="mt-5">Propiedades</h1>
+
+    <table id="propiedades" class="propiedades">
         <thead>
             <tr>
                 <th>ID</th>
@@ -44,9 +44,9 @@
         </tbody>
     </table>
 
-    <h2>Vendedores</h2>
+    <h1 class="mt-5">Vendedores</h1>
 
-    <table class="vendedores">
+    <table id="vendedores" class="vendedores">
         <thead>
             <tr>
                 <th>ID</th>
@@ -74,3 +74,10 @@
         </tbody>
     </table>
 </main>
+
+<script>
+        $(document).ready(function() {
+            $('#propiedades').DataTable();
+            $('#vendedores').DataTable();
+        });
+</script>
