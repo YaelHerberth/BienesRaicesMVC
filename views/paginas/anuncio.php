@@ -2,7 +2,7 @@
 <main class="contenedor seccion contenido-centrado">
     <h1><?= $propiedad->titulo ?></h1>
     <picture>
-        <img loading="lazy" src="Imagenes/<?= $propiedad->imagen ?>" alt="Imagen de la propiedad">
+        <img loading="lazy" src="imagenes/<?= $propiedad->imagen ?>" alt="Imagen de la propiedad">
     </picture>
     <div class="resumen-propiedad">
         <p class="precio"><?= $propiedad->precio ?></p>
